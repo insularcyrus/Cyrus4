@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CYRUS | DHT11 Monitoring</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="topbar">
+
+        <div>
+
+            <div class="brand">
+                CYRUS
+            </div>
+
+            <h1>
+                DHT11 ENVIRONMENT MONITOR
+            </h1>
+
+            <p>
+                Temperature & Humidity Monitoring
+            </p>
+
+        </div>
+
+
+        <div class="status-box">
+
+            <span
+                id="statusDot"
+                class="status-dot offline"
+            ></span>
+
+            <span id="statusText">
+                SYSTEM OFFLINE
+            </span>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         CURRENT READINGS
+    ========================================== -->
+
+    <section class="current-section">
+
+
+        <div class="sensor-card">
+
+            <div class="sensor-icon">
+                🌡️
+            </div>
+
+            <div class="sensor-label">
+                CURRENT TEMPERATURE
+            </div>
+
+            <div
+                id="currentTemperature"
+                class="sensor-value"
+            >
+                -- °C
+            </div>
+
+        </div>
+
+
+
+        <div class="sensor-card">
+
+            <div class="sensor-icon">
+                💧
+            </div>
+
+            <div class="sensor-label">
+                CURRENT HUMIDITY
+            </div>
+
+            <div
+                id="currentHumidity"
+                class="sensor-value"
+            >
+                -- %
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================================
+         SENSOR GRAPH
+    ========================================== -->
+
+    <section class="data-card">
+
+
+        <div class="data-header">
+
+            <div class="section-title">
+
+                <span class="title-line"></span>
+
+                <div>
+
+                    <h2>
+                        SENSOR GRAPH
+                    </h2>
+
+                    <p>
+                        Temperature and humidity readings
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <select id="graphDate">
+
+                <option value="">
+                    Select Date
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <div class="chart-container">
+
+            <canvas
+                id="sensorChart"
+            ></canvas>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================================
+         SENSOR HISTORY
+    ========================================== -->
+
+    <section class="data-card">
+
+
+        <div class="data-header">
+
+            <div class="section-title">
+
+                <span class="title-line"></span>
+
+                <div>
+
+                    <h2>
+                        SENSOR HISTORY
+                    </h2>
+
+                    <p>
+                        Previous DHT11 readings
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                id="toggleHistory"
+                class="btn btn-start"
+            >
+                SHOW HISTORY
+            </button>
+
+        </div>
+
+
+
+        <div
+            id="historyContent"
+            class="hidden"
+        >
+
+
+            <div class="history-controls">
+
+                <label for="historyDate">
+                    SELECT DATE
+                </label>
+
+
+                <select id="historyDate">
+
+                    <option value="">
+                        Select Date
+                    </option>
+
+                </select>
+
+
+                <span id="recordCount">
+                    0 records
+                </span>
+
+            </div>
+
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                TIME
+                            </th>
+
+                            <th>
+                                TEMPERATURE
+                            </th>
+
+                            <th>
+                                HUMIDITY
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="historyTableBody"
+                    >
+
+                        <tr>
+
+                            <td colspan="3">
+                                Waiting for sensor data...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================================
+         WIFI MANAGER
+    ========================================== -->
+
+    <section class="data-card wifi-section">
+
+
+        <div class="section-title">
+
+            <span class="title-line"></span>
+
+            <div>
+
+                <h2>
+                    WIFI MANAGER
+                </h2>
+
+                <p>
+                    Configure the ESP32 WiFi connection
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <a
+            href="/change-wifi"
+            class="btn btn-start wifi-button"
+        >
+            CHANGE WIFI
+        </a>
+
+
+    </section>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer>
+
+        CYRUS ESP32 MONITOR
+
+        <span>•</span>
+
+        FIREBASE REALTIME DATABASE
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- =========================================
+     CHART.JS
+========================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js"
+></script>
+
+
+
+<!-- =========================================
+     FIREBASE APP
+========================================== -->
+
+<script
+    type="module"
+    src="script.js"
+></script>
+
+
+</body>
+
+</html>
