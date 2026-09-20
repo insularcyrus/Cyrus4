@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CYRUS | WiFi Manager</title>
+
+
+    <style>
+
+        * {
+
+            box-sizing: border-box;
+
+            margin: 0;
+
+            padding: 0;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 20px;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    #172554 0%,
+                    #080d18 45%,
+                    #03060b 100%
+                );
+
+            color: #e0f2fe;
+
+        }
+
+
+        .wifi-card {
+
+            width: 100%;
+
+            max-width: 500px;
+
+            padding: 35px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(15, 23, 42, .98),
+                    rgba(3, 7, 18, .98)
+                );
+
+            border:
+                1px solid
+                rgba(56, 189, 248, .35);
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 20px 60px
+                rgba(0, 0, 0, .55),
+
+                0 0 30px
+                rgba(56, 189, 248, .08);
+
+        }
+
+
+        .logo {
+
+            text-align: center;
+
+            font-size: 34px;
+
+            font-weight: 800;
+
+            letter-spacing: 5px;
+
+            color: #38bdf8;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #94a3b8;
+
+            font-size: 14px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .wifi-icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            margin:
+                0 auto 20px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    56,
+                    189,
+                    248,
+                    .08
+                );
+
+            border:
+                1px solid
+                rgba(
+                    56,
+                    189,
+                    248,
+                    .3
+                );
+
+            font-size: 32px;
+
+            box-shadow:
+                0 0 25px
+                rgba(
+                    56,
+                    189,
+                    248,
+                    .15
+                );
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: #7dd3fc;
+
+        }
+
+
+        .form-group input {
+
+            width: 100%;
+
+            padding:
+                13px 14px;
+
+            border-radius: 10px;
+
+            border:
+                1px solid #334155;
+
+            background: #020617;
+
+            color: #e0f2fe;
+
+            outline: none;
+
+            font-size: 14px;
+
+            transition: .2s;
+
+        }
+
+
+        .form-group input::placeholder {
+
+            color: #64748b;
+
+        }
+
+
+        .form-group input:focus {
+
+            border-color:
+                #38bdf8;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(
+                    56,
+                    189,
+                    248,
+                    .10
+                );
+
+        }
+
+
+        .wifi-button {
+
+            width: 100%;
+
+            margin-top: 8px;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0284c7,
+                    #38bdf8
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s;
+
+            box-shadow:
+                0 8px 25px
+                rgba(
+                    14,
+                    165,
+                    233,
+                    .20
+                );
+
+        }
+
+
+        .wifi-button:hover {
+
+            transform:
+                translateY(-1px);
+
+            box-shadow:
+                0 10px 30px
+                rgba(
+                    14,
+                    165,
+                    233,
+                    .35
+                );
+
+        }
+
+
+        .info {
+
+            margin-top: 25px;
+
+            padding: 16px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(
+                    14,
+                    165,
+                    233,
+                    .06
+                );
+
+            border:
+                1px solid
+                rgba(
+                    56,
+                    189,
+                    248,
+                    .15
+                );
+
+            color: #94a3b8;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+        }
+
+
+        .info strong {
+
+            color: #7dd3fc;
+
+        }
+
+
+        .status {
+
+            margin-top: 20px;
+
+            text-align: center;
+
+            font-size: 12px;
+
+            color: #64748b;
+
+        }
+
+
+        .status span {
+
+            color: #22c55e;
+
+            font-weight: 700;
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            .wifi-card {
+
+                padding:
+                    25px 20px;
+
+            }
+
+
+            .logo {
+
+                font-size: 28px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="wifi-card">
+
+
+        <div class="wifi-icon">
+            📶
+        </div>
+
+
+        <div class="logo">
+            CYRUS
+        </div>
+
+
+        <div class="subtitle">
+            ESP32 WiFi Manager
+        </div>
+
+
+        <form
+            action="/"
+            method="POST"
+        >
+
+
+            <div class="form-group">
+
+                <label for="ssid">
+                    WiFi SSID
+                </label>
+
+
+                <input
+                    type="text"
+                    id="ssid"
+                    name="ssid"
+                    placeholder="Enter WiFi name"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="pass">
+                    WiFi Password
+                </label>
+
+
+                <input
+                    type="password"
+                    id="pass"
+                    name="pass"
+                    placeholder="Enter WiFi password"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="ip">
+                    IP Address
+                </label>
+
+
+                <input
+                    type="text"
+                    id="ip"
+                    name="ip"
+                    placeholder="Optional - leave blank for DHCP"
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="gateway">
+                    Gateway Address
+                </label>
+
+
+                <input
+                    type="text"
+                    id="gateway"
+                    name="gateway"
+                    placeholder="Optional - leave blank for DHCP"
+                >
+
+            </div>
+
+
+
+            <button
+                type="submit"
+                class="wifi-button"
+            >
+                Save & Connect
+            </button>
+
+
+        </form>
+
+
+
+        <div class="info">
+
+            <strong>
+                How it works
+            </strong>
+
+            <br>
+
+            1. Enter your WiFi SSID and password.
+
+            <br>
+
+            2. Click <b>Save & Connect</b>.
+
+            <br>
+
+            3. ESP32 saves the WiFi settings.
+
+            <br>
+
+            4. ESP32 restarts automatically.
+
+            <br>
+
+            5. ESP32 connects to your WiFi.
+
+            <br>
+
+            6. Open the ESP32 IP address to access
+            the Cyrus main web server.
+
+        </div>
+
+
+
+        <div class="status">
+
+            WiFi Manager Status:
+            <span>READY</span>
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
